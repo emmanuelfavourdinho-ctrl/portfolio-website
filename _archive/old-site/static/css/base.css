@@ -1,0 +1,233 @@
+/* =========================
+    GLOBAL RESET
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* =========================
+    BODY (SOFT DARK THEME)
+========================= */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0f172a;
+    color: peru;
+}
+body {
+    background-color: #0f172a; /* dark background */
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background-color: #0f172a;
+}
+
+/* =========================
+    NAVBAR
+========================= */
+.nav-link {
+    position: relative;
+    transition: 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #f97316; /* ORANGE */
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background: #f97316;
+    left: 0;
+    bottom: -4px;
+    transition: 0.3s;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* =========================
+    FLOATING BUTTONS
+========================= */
+.floating-btn,
+.chat-icon {
+    position: fixed;
+    right: 20px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* WhatsApp */
+.floating-btn {
+    bottom: 20px;
+    background: #22c55e;
+}
+
+.floating-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Chat */
+.chat-icon {
+    bottom: 85px;
+    background: #1e293b;
+}
+
+.chat-icon:hover {
+    transform: scale(1.1);
+}
+
+/* =========================
+    CHAT BOX
+========================= */
+.chat-box {
+    position: fixed;
+    bottom: 140px;
+    right: 20px;
+    width: 260px;
+    background: #1e293b;
+    border-radius: 10px;
+    padding: 15px;
+    display: none;
+}
+
+.chat-box.active {
+    display: block;
+}
+
+/* =========================
+    PROJECT CARD (FIXED SIZE)
+========================= */
+.project-card {
+    background: #1e293b;
+    border-left: 4px solid #f97316;
+    border-radius: 10px;
+
+    max-width: 700px;   /* 🔥 balanced size */
+    margin: 25px auto;
+    padding: 18px;
+
+    display: flex;
+    gap: 18px;
+    align-items: center;
+
+    transition: 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+}
+
+/* TEXT */
+.project-card h2 {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.project-card p {
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+/* LAYOUT CONTROL */
+.project-info {
+    flex: 1;
+}
+
+.carousel {
+    flex: 1;
+    max-width: 45%;
+}
+
+/* =========================
+    CAROUSEL
+========================= */
+.carousel-item {
+    height: 260px;
+    background: #020617;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-item img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* =========================
+    PROFILE IMAGE (FIXED)
+========================= */
+.hero-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #f97316;
+}
+
+/* =========================
+    FOOTER
+========================= */
+.footer-icon {
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+.footer-icon:hover {
+    transform: scale(1.2);
+    opacity: 1;
+}
+
+/* =========================
+    RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+
+    .project-card {
+        flex-direction: column;
+        max-width: 95%;
+    }
+
+    .carousel {
+        max-width: 100%;
+    }
+
+    .carousel-item {
+        height: 200px;
+    }
+
+    .profile-img {
+        width: 130px;
+        height: 130px;
+    }
+}
+
+.services-section {
+    background: #0f172a;
+}

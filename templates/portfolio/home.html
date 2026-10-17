@@ -1,0 +1,97 @@
+{% extends "portfolio/base.html" %}
+{% load static %}
+{% block content %}
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-inner">
+    <h1 id="hero-title"><span>Thoughtful software.</span><span>Carefully engineered.</span></h1>
+    <p class="lede">I build web applications and mobile experiences, with a focus on thoughtful implementation, sound engineering decisions, and solving real problems through software.</p>
+    <div class="actions">
+      <a class="btn" href="#work">Explore selected work</a>
+      <a class="link" href="#contact">Get in touch</a>
+    </div>
+  </div>
+  <img class="hero-img" src="{% static c.HERO_IMAGE.src_small %}" srcset="{% static c.HERO_IMAGE.src_small %} 1200w, {% static c.HERO_IMAGE.src %} 2400w" sizes="(min-width:64rem) 55vw, 100vw" width="2400" height="1538" alt="{{ c.HERO_IMAGE.alt }}" fetchpriority="high">
+</section>
+
+<section class="section" id="work" aria-labelledby="work-title">
+  <div class="wrap"><div class="grid">
+    <h2 class="section-title" id="work-title">Selected work</h2>
+    <div class="section-body">
+      {% for p in projects %}
+      <article class="project">
+        {% if p.shots %}<a class="shot-link" href="{% url 'case_study' p.slug %}"><img src="{% static p.shots.0.src %}" alt="{{ p.shots.0.alt }}" width="1600" loading="lazy"></a>{% endif %}
+        <h3><a href="{% url 'case_study' p.slug %}">{{ p.name }}</a></h3>
+        <p>{{ p.summary }}</p>
+        <dl class="facts">
+          <div><dt>Status</dt><dd>{{ p.status }}<span class="note">{{ p.status_note }}</span></dd></div>
+          <div><dt>Built with</dt><dd>{{ p.stack|join:", " }}</dd></div>
+          <div><dt>Read</dt><dd><a href="{% url 'case_study' p.slug %}">Case study</a></dd></div>
+          {% if p.live %}<div><dt>Live site</dt><dd><a href="{{ p.live }}" rel="noopener">Visit newbizcreation.web.app</a></dd></div>{% endif %}
+          {% if p.repo %}<div><dt>Source</dt><dd><a href="{{ p.repo }}" rel="noopener">Repository on GitHub</a></dd></div>{% endif %}
+        </dl>
+      </article>
+      {% endfor %}
+      <p class="more">More projects will be added here once each has a repository, a working demonstration and genuine screenshots.</p>
+    </div>
+  </div></div>
+</section>
+
+<section class="section" id="stack" aria-labelledby="stack-title">
+  <div class="wrap"><div class="grid">
+    <h2 class="section-title" id="stack-title">Technical capabilities</h2>
+    <div class="section-body">
+      <dl class="caps">
+        {% for area, items in capabilities %}
+        <div><dt>{{ area }}</dt>
+          <dd>{% for name, used in items %}<span class="{% if used %}used{% else %}other{% endif %}">{{ name }}</span>{% if not forloop.last %}, {% endif %}{% endfor %}</dd></div>
+        {% endfor %}
+      </dl>
+      <p class="legend">Brighter entries are used in this site's source code. The rest come from other work that is not yet shown here.</p>
+    </div>
+  </div></div>
+</section>
+
+<section class="section about{% if c.ABOUT_PHOTOS %} has-photos{% endif %}" id="about" aria-labelledby="about-title">
+  <div class="wrap"><div class="grid">
+    <h2 class="section-title" id="about-title">About</h2>
+    <div class="section-body">
+      {% if c.ABOUT_PHOTOS %}<div class="about-photos">{% for ph in c.ABOUT_PHOTOS %}<figure><img src="{% static ph.src %}" alt="{{ ph.alt }}" loading="lazy">{% if ph.caption %}<figcaption>{{ ph.caption }}</figcaption>{% endif %}</figure>{% endfor %}</div>{% endif %}
+      {% for para in c.ABOUT %}<p>{{ para }}</p>{% endfor %}
+    </div>
+  </div></div>
+</section>
+
+<section class="section" id="contact" aria-labelledby="contact-title">
+  <div class="wrap"><div class="grid">
+    <h2 class="section-title" id="contact-title">Get in touch</h2>
+    <div class="section-body">
+      <a class="mail" href="mailto:{{ c.EMAIL }}">{{ c.EMAIL }}</a>
+      <p class="profiles"><a href="{{ c.GITHUB }}" rel="noopener">GitHub</a><a href="{{ c.LINKEDIN }}" rel="noopener">LinkedIn</a></p>
+
+      <div style="margin-top:4rem">
+        {% for m in messages %}<p class="status" role="{% if m.tags == 'error' %}alert{% else %}status{% endif %}">{{ m }}</p>{% endfor %}
+        <form class="form" method="post" action="{% url 'home' %}#contact" novalidate>
+          {% csrf_token %}
+          <div class="trap" aria-hidden="true"><label>Leave this empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+          <div class="field">
+            <label for="f-name">Name</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" required value="{{ form.name }}"{% if errors.name %} aria-invalid="true" aria-describedby="e-name"{% endif %}>
+            {% if errors.name %}<p class="error" id="e-name">{{ errors.name }}</p>{% endif %}
+          </div>
+          <div class="field">
+            <label for="f-email">Email</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" required value="{{ form.email }}"{% if errors.email %} aria-invalid="true" aria-describedby="e-email"{% endif %}>
+            {% if errors.email %}<p class="error" id="e-email">{{ errors.email }}</p>{% endif %}
+          </div>
+          <div class="field">
+            <label for="f-message">Message</label>
+            <textarea id="f-message" name="message" required{% if errors.message %} aria-invalid="true" aria-describedby="e-message"{% endif %}>{{ form.message }}</textarea>
+            {% if errors.message %}<p class="error" id="e-message">{{ errors.message }}</p>{% endif %}
+          </div>
+          <button class="btn" type="submit">Send message</button>
+        </form>
+      </div>
+    </div>
+  </div></div>
+</section>
+{% endblock %}

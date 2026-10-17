@@ -1,0 +1,36 @@
+{% extends "portfolio/index.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="max-w-5xl mx-auto py-20 text-center">
+
+    <h1 class="text-4xl font-bold mb-6 text-white">About Me</h1>
+
+    <img src="{% static 'images/profile.jpg' %}" 
+    class="profile-img mx-auto mb-6">
+
+    <p class="text-lg text-gray-400 mb-6">
+        I'm Nsok Emmanuel, a full-stack developer focused on building clean,
+        scalable, and high-performance web applications using Python and modern technologies.
+    </p>
+
+    <p class="text-lg text-gray-400 mb-6 leading-relaxed">
+        I specialize in Django backend systems and creating scalable web applications.
+        I enjoy solving real-world problems with technology and continuously improving my craft.
+    </p>
+
+    <!-- SKILLS -->
+    <div class="flex flex-wrap justify-center gap-4 mt-6">
+
+        <span class="px-4 py-2 bg-orange-500/20 text-orange-400 rounded-lg">Python</span>
+        <span class="px-4 py-2 bg-orange-500/20 text-blue-400 rounded-lg">Django</span>
+        <span class="px-4 py-2 bg-orange-500/20 text-green-400 rounded-lg">JavaScript</span>
+        <span class="px-4 py-2 bg-orange-500/20 text-orange-400 rounded-lg">SQL</span>
+        <span class="px-4 py-2 bg-orange-500/20 text-purple-400 rounded-lg">Git</span>
+
+    </div>
+
+</section>
+
+{% endblock %}

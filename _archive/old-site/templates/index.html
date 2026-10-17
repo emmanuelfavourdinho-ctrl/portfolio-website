@@ -1,0 +1,153 @@
+{% load static %}  
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMMA TECH</title>
+
+    <!-- Your CSS -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-900 text-gray-300 flex flex-col min-h-screen">
+
+<!-- NAVBAR -->
+<nav class="bg-gray-900/80 backdrop-blur border-b border-gray-700 fixed w-full z-50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+        <h1 class="text-2xl font-bold text-blue-500">EMMA TECH</h1>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex gap-6">
+            <a href="{% url 'home' %}" class="hover:text-blue-400">Home</a>
+            <a href="{% url 'about' %}" class="hover:text-blue-400">About</a>
+            <a href="{% url 'projects' %}" class="hover:text-blue-400">Projects</a>
+            <a href="{% url 'contact' %}" class="hover:text-blue-400">Contact</a>
+            <a href="{% url 'service' %}" class="hover:text-blue-400">Service</a>
+        </div>
+
+        <!-- Mobile Button -->
+        <button id="menuBtn" class="md:hidden text-2xl">☰</button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden md:hidden bg-gray-900 px-6 py-4 space-y-4">
+        <a href="{% url 'home' %}" class="block hover:text-blue-400">Home</a>
+        <a href="{% url 'about' %}" class="block hover:text-blue-400">About</a>
+        <a href="{% url 'projects' %}" class="block hover:text-blue-400">Projects</a>
+        <a href="{% url 'contact' %}" class="block hover:text-blue-400">Contact</a>
+        <a href="{% url 'service' %}" class="block hover:text-blue-400">Service</a>
+    </div>
+</nav>
+
+<!-- CONTENT -->
+<div class="pt-24 flex-grow">
+    <div class="max-w-5xl mx-auto px-6 py-10 bg-gray-800 rounded-xl shadow-lg">
+        {% block content %}{% endblock %}
+    </div>
+</div>
+
+<!-- Floating Chat Button -->
+<a href="/contact" 
+class="fixed bottom-6 right-6 bg-blue-600 text-white w-14 h-14 flex items-center justify-center rounded-full shadow-lg hover:bg-blue-500 transition">
+    <i class="fas fa-comments"></i>
+</a>
+
+<!-- Chat Popup -->
+<div id="chatPopup" 
+class="hidden fixed bottom-32 right-6 w-72 bg-white rounded-xl shadow-xl p-4">
+    <h4 class="font-bold mb-2">Live Support</h4>
+    <p class="text-sm text-gray-600 mb-3">
+        Hey 👋 Need help? Chat with me on WhatsApp.
+    </p>
+
+    <a href="https://wa.me/237659903514" target="_blank"
+    class="block text-center bg-green-500 text-white py-2 rounded hover:bg-green-400">
+        Start Chat
+    </a>
+</div>
+
+<!-- FOOTER -->
+<footer class="bg-gray-950 text-gray-400 py-12 mt-20">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+
+        <h2 class="text-xl font-bold text-white mb-2">EMMA TECH</h2>
+
+        <p class="text-sm mb-6">
+            Building modern web applications with focus and precision.
+        </p>
+
+        <div class="flex justify-center gap-8 text-2xl mb-6">
+
+            <a href="https://wa.me/237659903514" target="_blank"
+            class="hover:text-green-400">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+
+            <a href="https://linkedin.com/in/nsok-emmanuel" target="_blank"
+            class="hover:text-blue-400">
+                <i class="fab fa-linkedin"></i>
+            </a>
+
+            <a href="https://github.com/emmanuelfavourdinho" target="_blank"
+            class="hover:text-white">
+                <i class="fab fa-github"></i>
+            </a>
+
+            <a href="mailto:nsokemmanuelfavour@gmail.com"
+            class="hover:text-red-400">
+                <i class="fas fa-envelope"></i>
+            </a>
+
+        </div>
+
+        <p class="text-xs text-gray-500">
+            &copy; {{ current_year }} Nsok Emmanuel • All rights reserved
+        </p>
+
+    </div>
+</footer>
+
+<!-- SCRIPTS -->
+
+<!-- Mobile Menu Toggle -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const btn = document.getElementById("menuBtn");
+    const menu = document.getElementById("mobileMenu");
+
+    btn.addEventListener("click", function () {
+        menu.classList.toggle("hidden");
+    });
+
+    // Auto close when clicking a link
+    document.querySelectorAll("#mobileMenu a").forEach(link => {
+        link.addEventListener("click", () => {
+            menu.classList.add("hidden");
+        });
+    });
+});
+</script>
+
+<!-- Scroll Reveal -->
+<script>
+window.addEventListener('scroll', () => {
+    document.querySelectorAll('.reveal').forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        if (top < window.innerHeight - 80) {
+            el.classList.add('active');
+        }
+    });
+});
+</script>
+
+</body>
+</html>

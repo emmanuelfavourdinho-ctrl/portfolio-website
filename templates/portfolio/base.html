@@ -1,0 +1,43 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}Emmatech | Software engineer portfolio{% endblock %}</title>
+{% block meta_description %}{% with d="Portfolio of Nsok Emmanuel: web applications and mobile experiences, built with a focus on thoughtful implementation and sound engineering decisions." %}
+<meta name="description" content="{{ d }}">
+<meta property="og:description" content="{{ d }}">{% endwith %}{% endblock %}
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Emmatech">
+<meta property="og:title" content="{% block og_title %}Emmatech | Software engineer portfolio{% endblock %}">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230a0a0a'/%3E%3Ctext x='32' y='46' font-family='sans-serif' font-size='40' font-weight='600' fill='%23f5f5f5' text-anchor='middle'%3Ee%3C/text%3E%3C/svg%3E">
+<link rel="preload" href="{% static 'fonts/Geist-Variable.woff2' %}" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{% static 'css/site.css' %}">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="{% url 'home' %}" aria-label="Emmatech, home">Emmatech</a>
+    <nav class="nav" aria-label="Primary">
+      <a href="{% url 'home' %}#work">Work</a>
+      <a href="{% url 'home' %}#about">About</a>
+      <a href="{% url 'home' %}#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+<main id="main">{% block content %}{% endblock %}</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Emmatech &middot; &copy; {% now "Y" %} {{ c.OWNER }}</p>
+    <nav aria-label="Elsewhere">
+      <a href="{{ c.GITHUB }}" rel="noopener">GitHub</a>
+      <a href="{{ c.LINKEDIN }}" rel="noopener">LinkedIn</a>
+      <a href="mailto:{{ c.EMAIL }}">Email</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

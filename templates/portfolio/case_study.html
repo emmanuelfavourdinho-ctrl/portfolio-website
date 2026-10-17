@@ -1,0 +1,65 @@
+{% extends "portfolio/base.html" %}
+{% load static %}
+{% block title %}{{ project.name }} | Emmatech{% endblock %}
+{% block og_title %}{{ project.name }} | Emmatech{% endblock %}
+{% block meta_description %}<meta name="description" content="{{ project.summary }}"><meta property="og:description" content="{{ project.summary }}">{% endblock %}
+{% block content %}
+{% with k=project.case %}
+<header class="case-head">
+  <div class="wrap grid">
+    <p class="back" style="grid-column:1/-1"><a href="{% url 'home' %}#work">Back to selected work</a></p>
+    <h1>{{ project.name }}</h1>
+    <p class="lede">{{ project.summary }}</p>
+    <div class="facts" style="grid-column:1/-1;margin-top:2.5rem;max-width:56rem">
+      <dl class="facts" style="border:0;padding:0;margin:0">
+        <div><dt>Status</dt><dd>{{ project.status }}<span class="note">{{ project.status_note }}</span></dd></div>
+        <div><dt>Built with</dt><dd>{{ project.stack|join:", " }}</dd></div>
+        {% if project.live %}<div><dt>Live site</dt><dd><a href="{{ project.live }}" rel="noopener">{{ project.live }}</a></dd></div>{% endif %}
+        {% if project.repo %}<div><dt>Source</dt><dd><a href="{{ project.repo }}" rel="noopener">Repository on GitHub</a></dd></div>{% endif %}
+      </dl>
+    </div>
+  </div>
+</header>
+
+{% if project.shots %}<section class="shots"><div class="wrap">{% for sh in project.shots %}<figure><img src="{% static sh.src %}" alt="{{ sh.alt }}" width="1600" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"><figcaption>{{ sh.caption }}</figcaption></figure>{% endfor %}</div></section>{% endif %}
+
+<section class="case-section"><div class="wrap grid">
+  <h2>Problem and context</h2><div class="col prose"><p>{{ k.context }}</p></div>
+</div></section>
+
+<section class="case-section"><div class="wrap grid">
+  <h2>Scope and contribution</h2><div class="col prose"><p>{{ k.contribution }}</p></div>
+</div></section>
+
+{% if k.features %}<section class="case-section"><div class="wrap grid">
+  <h2>What it does</h2><div class="col prose"><ul>{% for f in k.features %}<li>{{ f }}</li>{% endfor %}</ul></div>
+</div></section>{% endif %}
+
+<section class="case-section"><div class="wrap grid">
+  <h2>{{ k.flow_title }}</h2><div class="col"><ol class="flow">{% for s in k.flow %}<li><span>{{ s }}</span></li>{% endfor %}</ol></div>
+</div></section>
+
+<section class="case-section"><div class="wrap grid">
+  <h2>{% if project.live %}Design choices in the product{% else %}Engineering decisions{% endif %}</h2>
+  <div class="col">{% for d in k.decisions %}
+    <div class="decision"><h3>{{ d.title }}</h3>
+      <dl>{% if d.problem %}<div><dt>Problem</dt><dd>{{ d.problem }}</dd></div>{% endif %}
+      <div><dt>Choice</dt><dd>{{ d.choice }}</dd></div>
+      {% if d.reason %}<div><dt>Why</dt><dd>{{ d.reason }}</dd></div>{% endif %}
+      {% if d.cost %}<div><dt>Consequence</dt><dd>{{ d.cost }}</dd></div>{% endif %}</dl></div>{% endfor %}
+  </div>
+</div></section>
+
+{% if k.challenges %}<section class="case-section"><div class="wrap grid">
+  <h2>Challenges</h2><div class="col prose"><ul>{% for c in k.challenges %}<li>{{ c }}</li>{% endfor %}</ul></div>
+</div></section>{% endif %}
+
+<section class="case-section"><div class="wrap grid">
+  <h2>Evidence</h2><div class="col prose"><ul>{% for e in k.evidence %}<li>{{ e }}</li>{% endfor %}</ul></div>
+</div></section>
+
+{% if k.reflection %}<section class="case-section"><div class="wrap grid">
+  <h2>Reflection</h2><div class="col prose"><p>{{ k.reflection }}</p></div>
+</div></section>{% endif %}
+{% endwith %}
+{% endblock %}

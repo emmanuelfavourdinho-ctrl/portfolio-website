@@ -1,0 +1,98 @@
+{% extends "portfolio/index.html" %}
+
+{% block content %}
+
+<section class="px-6 py-16">
+
+    <h1 class="text-4xl font-bold text-white text-center mb-12">
+        Technical Expertise
+    </h1>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+
+        <!-- UI/UX -->
+        <div class="bg-gray-900 rounded-xl shadow p-6 flex flex-col justify-between border border-gray-800 hover:scale-105 hover:shadow-lg transition">
+            
+            <div>
+                <h2 class="text-xl font-bold text-white mb-2">UI/UX Design</h2>
+                
+                <p class="text-gray-400 mb-4">
+                    We design clean, modern and user-friendly interfaces that are visually 
+                    appealing and easy to navigate, ensuring users enjoy every interaction 
+                    and stay engaged with your product.
+                </p>
+            </div>
+
+            <a href="/contact" class="mt-4 text-blue-400 hover:underline">
+                Hire Me →
+            </a>
+        </div>
+
+        <!-- Web -->
+        <div class="bg-gray-900 rounded-xl shadow p-6 flex flex-col justify-between border border-gray-800 hover:scale-105 hover:shadow-lg transition">
+            
+            <div>
+                <h2 class="text-xl font-bold text-white mb-2">Web Development</h2>
+                
+                <p class="text-gray-400 mb-4">
+                    We build standard, classic and modern websites that are responsive, 
+                    fast and user-friendly, delivering a top-notch experience that keeps 
+                    users engaged and coming back.
+                </p>
+            </div>
+
+            <a href="/contact" class="mt-4 text-green-400 hover:underline">
+                Hire Me →
+            </a>
+        </div>
+
+        <!-- Mobile -->
+        <div class="bg-gray-900 rounded-xl shadow p-6 flex flex-col justify-between border border-gray-800 hover:scale-105 hover:shadow-lg transition">
+            
+            <div>
+                <h2 class="text-xl font-bold text-white mb-2">Mobile App Development</h2>
+                
+                <p class="text-gray-400 mb-4">
+                    We build modern, classy and responsive mobile apps that solve real-world 
+                    problems, fully tailored to match your vision and customer needs.
+                </p>
+            </div>
+
+            <a href="/contact" class="mt-4 text-purple-400 hover:underline">
+                Hire Me →
+            </a>
+        </div>
+
+        <!-- Security -->
+        <div class="bg-gray-900 rounded-xl shadow p-6 flex flex-col justify-between border border-gray-800 hover:scale-105 hover:shadow-lg transition">
+            
+            <div>
+                <h2 class="text-xl font-bold text-white mb-2">Security & Control</h2>
+                
+                <p class="text-gray-400 mb-4">
+                    We analyze source code, identify vulnerabilities, and eliminate 
+                    penetration points, ensuring your system is secure and protected 
+                    from hacking and unauthorized access.
+                </p>
+            </div>
+
+            <a href="/contact" class="mt-4 text-red-400 hover:underline">
+                Hire Me →
+            </a>
+        </div>
+
+    </div>
+
+    <!-- Agile Methodology -->
+    <div class="max-w-3xl mx-auto mt-16 text-center">
+        <p class="text-gray-400">
+            We build using the <span class="text-white font-semibold">Agile methodology</span>, 
+            ensuring constant interaction between the developer and the client. 
+            Each module is developed incrementally with continuous feedback, giving you 
+            full control and transparency throughout the entire process.
+        </p>
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,93 @@
+/* =========================
+    CONTACT PAGE STYLES
+========================= */
+
+/* Wrapper (scope everything) */
+.contact-section {
+    background-color: #f9fafb;
+}
+
+/* HEADER */
+.contact-header h1 {
+    letter-spacing: -0.5px;
+}
+
+.contact-header p {
+    line-height: 1.6;
+}
+
+/* FORM CARD */
+.contact-form {
+    transition: all 0.3s ease;
+}
+
+.contact-form:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* INPUT FIELDS */
+.contact-form input,
+.contact-form textarea {
+    font-size: 0.95rem;
+    color: #111827;
+    background-color: #ffffff;
+    transition: all 0.25s ease;
+}
+
+/* PLACEHOLDER */
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: #9ca3af;
+}
+
+/* FOCUS STATE (VERY IMPORTANT UX) */
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+/* BUTTON */
+.contact-form button {
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.contact-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+/* CONTACT INFO */
+.contact-info {
+    line-height: 1.6;
+}
+
+/* HOVER EFFECT FOR LINKS */
+.contact-info .info-item {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.contact-info .info-item:hover {
+    transform: translateX(5px);
+    color: #2563eb;
+}
+
+/* FADE IN ANIMATION */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.contact-section {
+    animation: fadeInUp 0.6s ease-in-out;
+}
